@@ -1,9 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
-
-// GET all todos
 export async function GET() {
   const todos = await prisma.todo.findMany({
     orderBy: { createdAt: "desc" },
@@ -11,7 +8,6 @@ export async function GET() {
   return NextResponse.json(todos);
 }
 
-// POST new todo
 export async function POST(req: Request) {
   const body = await req.json();
 

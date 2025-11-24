@@ -1,9 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/prisma/prisma";
 import { NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
-
-// UPDATE
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
   const id = Number(params.id);
   const body = await req.json();
@@ -18,7 +15,6 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   return NextResponse.json(updated);
 }
 
-// DELETE
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {
   const id = Number(params.id);
 
